@@ -1,0 +1,7 @@
+{
+  "name": "MHWBG_Companion",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
