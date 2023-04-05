@@ -2,7 +2,9 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Blank</ion-title>
+        <ion-title class="text__monster">
+          Monster Hunter World: Boardgame
+        </ion-title>
       </ion-toolbar>
     </ion-header>
 

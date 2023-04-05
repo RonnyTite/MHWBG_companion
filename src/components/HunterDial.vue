@@ -7,8 +7,8 @@
           -
         </ion-button>
       </div>
-      <div class="ion-margin-horizontal">
-       {{ hunter.name }} {{ hunter.healthPoint }}
+      <div class="ion-margin-horizontal health_point text__monster">
+        {{ hunter.name }} {{ hunter.healthPoint }}
       </div>
       <div>
         <ion-button @click="decreaseHP">
@@ -72,5 +72,8 @@ export default defineComponent({
      align-content: center;
      justify-content: center;
      align-items: center;
+ }
+ .health_point {
+  font-size: 80px;;
  }
  </style>

@@ -36,6 +36,9 @@
 .text__bold {
   font-weight:bold;
 }
+.text__monster {
+  font-family: "monsterHunter", arial;
+}
 
 @font-face {
     font-family: 'retro';
@@ -61,5 +64,10 @@
     src: url('@/fonts/ProximaNova-Semibold.otf') format("opentype");
     font-weight: normal;
     font-style: normal;
-
+}
+@font-face {
+  font-family: 'monsterHunter'; 
+  src: url('@/fonts/MonsterHunter.ttf') format("truetype");  /* Author Mitsarugi: https://www.deviantart.com/xmitsarugix */
+  font-weight: normal;
+  font-style: normal;
 }

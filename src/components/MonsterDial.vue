@@ -11,7 +11,7 @@
           -
         </ion-button>
       </div>
-      <div class="ion-margin-horizontal">
+      <div class="ion-margin-horizontal text__monster health_point">
         {{ monster.healthPoint }}
       </div>
       <div>
@@ -78,5 +78,8 @@ export default defineComponent({
   height: 50px;
   display: block;
   margin: auto;
+ }
+ .health_point {
+  font-size: 80px;;
  }
  </style>
