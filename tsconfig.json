@@ -1,35 +1,49 @@
 {
+  "//": "https://www.typescriptlang.org/docs/handbook/tsconfig-json.html",
+	"//about-target": "upgrade target from ES2018 to ES2020 to be able to use import.meta",
+  "//comment//": "was having trouble with Could not find a declaration file for module 'pinia', this fixed it ->https://stackoverflow.com/a/58232530",
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "importHelpers": true,
+    "target": "es2020",
+    "module": "esnext",
     "strict": true,
     "jsx": "preserve",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM", "dom.iterable", "scripthost"],
+    "importHelpers": true,
+    "moduleResolution": "node",
     "skipLibCheck": true,
-    "noEmit": true,
+    "esModuleInterop": true,
     "noImplicitAny": true,
 		"noImplicitThis": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "allowJs": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "types": [
+      "webpack-env",
+      "pinia-plugin-persist",
+      "jest"
+    ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [ "src/*" ]
     },
-    "types": ["pinia-plugin-persist"],
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
   },
   "include": [
-    "src/**/*.ts", 
-    "src/**/*.d.ts", 
-       "tests/**/*.ts", 
-    "tests/**/*.d.ts",
-      "src/**/*.vue"
-    ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+    "./**/.eslintrc.js",
+    "./**/*.js",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "./**/*.js",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+   ],
+  "exclude": [
+    "node_modules",
+  ]
 }
