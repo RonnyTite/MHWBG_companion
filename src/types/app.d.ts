@@ -46,9 +46,10 @@ export interface Item {
 }
 
 export interface Game {
-  hunters: Array<Hunter>
-  monster: Monster
+  huntersList: Array<Hunter>
+  monsterList: Monster
   inventory: Array<Item>
+  potions: Potions
 }
 
 export interface Chest {
@@ -57,6 +58,15 @@ export interface Chest {
 
 export interface Potions {
   quantity: number
+}
+
+export interface IncludedExpansions {
+  ancientForest: boolean,
+  wildspire: boolean,
+  teostra: boolean,
+  nergigante: boolean,
+  kusharadaora: boolean,
+  kuluYaKu: boolean,
 }
 
 export interface AncientForestCoreMonsterList {
@@ -257,7 +267,7 @@ export interface KuluYaKuExpansionMonsterList {
   },
 }
 
-export interface KusharadaoraExpansionMonsterList {
+export interface KusharadaoraExpanngsionMonsterList {
   kusharadaora: {
     name: 'Kusharadaora',
     icon: './assets/monsters/kusharadaora.png',
@@ -315,4 +325,9 @@ export interface NergiganteExpansionMonsterList {
         maxHealthPoint: 65,
       }, }
   },
+}
+
+export interface Campaign extends Game {
+  expansions:IncludedExpansions
+  name?:string
 }

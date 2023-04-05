@@ -2,15 +2,30 @@
   <div>
     <IonCard>
       <IonCardHeader>
-        <IonCardTitle> {{ hunter.name }} HP </IonCardTitle>
+        <IonCardTitle>
+          <span>Hunter {{ hunterIndex + 1 }}</span>
+          <span class="close">
+            <IonButton
+              class="close-btn"
+              fill="outline"
+              @click="removeHunter"
+            >
+              <IonIcon
+                :icon="closeOutline"
+                color="dark"
+              />
+            </IonButton>
+          </span>
+        </IonCardTitle>
       </IonCardHeader>
 
       <IonCardContent>
+        <div>{{ hunter.name }} HP </div>
         <div class="dial-container">
           <div>
-            <ion-button @click="increaseHP">
+            <IonButton @click="increaseHP">
               -
-            </ion-button>
+            </IonButton>
           </div>
           <div
             class="ion-margin-horizontal health_point text__monster"
@@ -19,9 +34,9 @@
             {{ hunter.healthPoint }}
           </div>
           <div>
-            <ion-button @click="decreaseHP">
+            <IonButton @click="decreaseHP">
               +
-            </ion-button>
+            </IonButton>
           </div>
         </div>
       </IonCardContent>
@@ -32,18 +47,27 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import {
-  IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
+  IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon,
 } from '@ionic/vue';
+import {
+  closeOutline,
+} from 'ionicons/icons';
 import { Hunter } from '../types/app.d';
 
 export default defineComponent({
   components: {
-    IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
+    IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon,
   },
   props: {
     hunterProps: { type: Object as PropType<Hunter>, require: true, default: () => ({}) },
+    hunterIndex: { type: Number, require: true, default: 0 },
   },
-  emits: ['createHunter'],
+  emits: ['remove-hunter'],
+  setup() {
+    return {
+      closeOutline,
+    };
+  },
   data() {
     return {
       hunter: {} as Hunter,
@@ -78,23 +102,13 @@ export default defineComponent({
       }
       this.hunter.healthPoint += 1;
     },
+    removeHunter() {
+      this.$emit('remove-hunter', this.hunter.name);
+    },
   },
 
 });
 </script>
 
  <style scoped>
- .dial-container {
-     display: flex;
-     flex-direction: row;
-     flex-wrap: nowrap;
-     align-content: center;
-     justify-content: center;
-     align-items: center;
- }
- .health_point {
-  font-size: 80px;
-  --ion-card-color: black;
- }
-
  </style>

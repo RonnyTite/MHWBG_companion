@@ -1,26 +1,29 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title class="text__monster">
+  <IonPage>
+    <IonHeader :translucent="true">
+      <IonToolbar>
+        <IonTitle class="text__monster">
           Monster Hunter World: Boardgame
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">
-            Blank
-          </ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <div id="container">
+        </IonTitle>
+        <IonButtons slot="end">
+          <IonButton fill="clear">
+            <IonIcon
+              :icon="cogOutline"
+              @click="openSettings"
+            />
+          </IonButton>
+        </IonButtons>
+      </IonToolbar>
+    </IonHeader>
+    <IonContent :fullscreen="true">
+      <div
+        id="container"
+        class="ion-margin"
+      >
         <MonsterDial
           v-if="monsterProperties.name"
           :monster-properties="monsterProperties"
+          @remove-monster="removeMonster"
         />
         <MonsterScrollDown
           v-else
@@ -31,7 +34,9 @@
             v-for="(hunter, index) in hunters"
             :key="index"
             :hunter-props="hunter"
+            :hunter-index="index"
             @create-hunter="openModalHunter"
+            @remove-hunter="removeHunter"
           />
         </div>
 
@@ -42,20 +47,49 @@
           Add Hunter
         </IonButton>
       </div>
-    </ion-content>
-  </ion-page>
+      <IonFab
+        slot="fixed"
+        vertical="bottom"
+        horizontal="end"
+      >
+        <IonFabButton>
+          <IonIcon :icon="add" />
+        </IonFabButton>
+        <IonFabList side="top">
+          <!-- Create Game -->
+          <!-- <IonFabButton>
+            <IonImg
+              src="./assets/items/questBook_dark.png"
+              class="add-game-btn"
+            />
+          </IonFabButton> -->
+          <!-- Create Campaign -->
+          <IonFabButton>
+            <IonImg
+              src="./assets/items/questBook_dark.png"
+              class="add-game-btn"
+            />
+          </IonFabButton>
+        </IonFabList>
+      </IonFab>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script lang="ts">
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton,
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonFab, IonFabButton, IonImg, IonFabList,
+  IonIcon,
 } from '@ionic/vue';
 import HunterDial from '@/components/HunterDial.vue';
 import MonsterDial from '@/components/MonsterDial.vue';
 import { defineComponent } from 'vue';
-import { Hunter } from '@/types/app';
+import { Hunter as HunterInterface } from '@/types/app';
 import MonsterScrollDown from '@/components/MonsterScrollDown.vue';
-import HunterController from '../scripts/HunterController';
+import {
+  add, cogOutline,
+} from 'ionicons/icons';
+import Hunter from '../scripts/HunterController';
 import MHWBGStore from '../store/Store';
 
 export default defineComponent({
@@ -69,10 +103,21 @@ export default defineComponent({
     MonsterDial,
     MonsterScrollDown,
     IonButton,
+    IonFab,
+    IonFabButton,
+    IonImg,
+    IonIcon,
+    IonFabList,
+  },
+  setup() {
+    return {
+      add,
+      cogOutline,
+    };
   },
   data() {
     return {
-      hunters: [] as Array<Hunter>,
+      hunters: [] as Array<HunterInterface>,
       monsterProperties: {
         name: '',
         rank: 0,
@@ -87,13 +132,24 @@ export default defineComponent({
     store.addAncientForestCoreMonsterList(); // Add expansion
   },
   methods: {
-    openModalHunter() {
-    // open Modal hunter
+    openSettings() { // open Settings
+    },
+    openModalHunter() { // open Modal hunter
     },
     createHunter() {
       // open creation modal
-      const newHunter = new HunterController({ name: 'Ronny' });
+      const newHunter = new Hunter({ name: `Ronny${this.hunters.length}` });
       this.hunters.push(newHunter);
+    },
+    removeHunter(name:string) {
+      const hunterIndex = this.hunters.findIndex((hunter) => name === hunter.name);
+      this.hunters.splice(hunterIndex, 1);
+    },
+    removeMonster() {
+      this.monsterProperties = {
+        name: '',
+        rank: 0,
+      };
     },
     selectMonster({ name, rank }:{ name:string, rank:number }) {
       this.monsterProperties = { name, rank };
@@ -103,15 +159,9 @@ export default defineComponent({
 
 </script>
 
-<style scoped>
+<style>
 #container {
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 #container strong {
@@ -134,4 +184,24 @@ export default defineComponent({
 .hunter-dials-container {
 
 }
+.dial-container {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: nowrap;
+     align-content: center;
+     justify-content: center;
+     align-items: center;
+ }
+ .health_point {
+  font-size: 80px;
+ }
+ .close{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+ }
+ .add-game-btn {
+  width: 20px;
+  height: 20px;
+ }
 </style>

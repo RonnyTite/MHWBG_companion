@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import {
   Game,
   Monster,
+  Campaign,
 } from '@/types/app';
 
 // https://pinia.vuejs.org/core-concepts/
@@ -22,7 +23,7 @@ const ancientForestCoreMonsterList:MonsterList = {
     rank: {
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: 50,
       },
       1: {
         rank: 2,
@@ -37,7 +38,7 @@ const ancientForestCoreMonsterList:MonsterList = {
   tobiKadachi: {
     name: 'Tobi Kadachi',
     icon: './assets/monsters/tobiKadachi.png',
-    healthPoint: 65,
+    healthPoint: 0,
     rank: {
       0: {
         rank: 1,
@@ -56,7 +57,7 @@ const ancientForestCoreMonsterList:MonsterList = {
   anjanath: {
     name: 'Anjanath',
     icon: './assets/monsters/anjanath.png',
-    healthPoint: 65,
+    healthPoint: 0,
     rank: {
       0: {
         rank: 1,
@@ -75,11 +76,11 @@ const ancientForestCoreMonsterList:MonsterList = {
   rathalos: {
     name: 'Rathalos',
     icon: './assets/monsters/rathalos.png',
-    healthPoint: 65,
+    healthPoint: 0,
     rank: {
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: 80,
       },
       1: {
         rank: 2,
@@ -93,7 +94,7 @@ const ancientForestCoreMonsterList:MonsterList = {
   },
   rathalosVariant: {
     name: 'Azure Rathalos',
-    icon: './assets/monsters/rathalosVariant.png',
+    icon: './assets/monsters/rathalos-Variant.png',
     healthPoint: 65,
     rank: {
       0: {
@@ -341,6 +342,9 @@ export default defineStore('MHWBG_Store', {
         ...nergiganteExpansionMonsterList,
         ...this.monsters,
       };
+    },
+    createNewCampaign(campaign:Campaign) {
+      this.currentGame = campaign;
     },
   },
   persist: {

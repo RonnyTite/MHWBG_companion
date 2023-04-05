@@ -1,38 +1,62 @@
 <template>
   <div>
-    <div> {{ monster.name }} HP </div>
-    <IonImg
-      class="monster-img"
-      :src="monster.icon"
-    />
-    <div class="dial-container">
-      <div>
-        <ion-button @click="increaseHP">
-          -
-        </ion-button>
-      </div>
-      <div class="ion-margin-horizontal text__monster health_point">
-        {{ monster.healthPoint }}
-      </div>
-      <div>
-        <ion-button @click="decreaseHP">
-          +
-        </ion-button>
-      </div>
-    </div>
+    <IonCard>
+      <IonCardHeader>
+        <IonCardTitle>
+          <span> {{ monster.name }} HP</span>
+          <span class="close">
+            <IonButton
+              class="close-btn"
+              fill="outline"
+              @click="$emit('remove-monster')"
+            >
+              <IonIcon
+                :icon="closeOutline"
+                color="dark"
+              />
+            </IonButton>
+          </span>
+        </IonCardTitle>
+      </IonCardHeader>
+      <IonCardContent>
+        <IonImg
+          class="monster-img"
+          :src="monster.icon"
+        />
+        <div class="dial-container">
+          <div>
+            <ion-button @click="increaseHP">
+              -
+            </ion-button>
+          </div>
+          <div class="ion-margin-horizontal text__monster health_point">
+            {{ monster.healthPoint }}
+          </div>
+          <div>
+            <ion-button @click="decreaseHP">
+              +
+            </ion-button>
+          </div>
+        </div>
+      </IonCardContent>
+    </IonCard>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { IonButton, IonImg } from '@ionic/vue';
-import { Monster } from '../types/app.d';
-import MonsterController from '../scripts/MonsterController';
+import {
+  IonButton, IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonIcon,
+} from '@ionic/vue';
+import {
+  closeOutline,
+} from 'ionicons/icons';
+import { Monster as MonsterInterface } from '../types/app.d';
+import Monster from '../scripts/MonsterController';
 
 export default defineComponent({
   components: {
-    IonButton,
-    IonImg,
+    IonButton, IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonIcon,
   },
   props: {
     monsterProperties: {
@@ -43,16 +67,21 @@ export default defineComponent({
       required: true,
     },
   },
+  emits: ['remove-monster'],
+  setup() {
+    return {
+      closeOutline,
+    };
+  },
   data() {
     return {
-      monster: {} as Monster,
+      monster: {} as MonsterInterface,
       monsterRank: 1 as number,
     };
   },
   beforeMount() {
-    debugger;
     const { name, rank } = this.monsterProperties;
-    this.monster = new MonsterController({ name, monsterRank: rank });
+    this.monster = new Monster({ name, monsterRank: rank });
   },
   methods: {
     increaseHP() {
@@ -76,21 +105,11 @@ export default defineComponent({
 </script>
 
  <style scoped>
- .dial-container {
-     display: flex;
-     flex-direction: row;
-     flex-wrap: nowrap;
-     align-content: center;
-     justify-content: center;
-     align-items: center;
- }
  .monster-img{
   width: 50px;
   height: 50px;
   display: block;
   margin: auto;
  }
- .health_point {
-  font-size: 80px;;
- }
+
  </style>

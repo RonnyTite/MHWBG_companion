@@ -1,15 +1,15 @@
 import {
-  Monster, MonsterRank,
+  Monster as MonsterInterface, MonsterRank,
 } from '../types/app';
 
 import MHWBGStore from '../store/Store';
 
-function fetchMonsterProperties(name:Monster['name']):Monster {
+function fetchMonsterProperties(name:MonsterInterface['name']):MonsterInterface {
   const store = MHWBGStore();
   return store.monsters[name];
 }
 
-export default class MonsterController {
+export default class Monster {
   name:string;
 
   icon:string;
@@ -18,7 +18,7 @@ export default class MonsterController {
 
   rank:Record<number, MonsterRank>;
 
-  constructor({ name, monsterRank }:{ name:Monster['name'], monsterRank:number }) {
+  constructor({ name, monsterRank }:{ name:MonsterInterface['name'], monsterRank:number }) {
     this.name = name;
 
     const wyvern = fetchMonsterProperties(name.toLowerCase());
