@@ -1,5 +1,6 @@
 <template>
-  <ion-modal
+  <IonModal
+    ref="modal"
     :is-open="isOpen"
     @will-dismiss="onWillDismiss"
   >
@@ -14,7 +15,7 @@
         <IonButtons slot="end">
           <IonButton
             :strong="true"
-            @click="confirm()"
+            @click="dismiss()"
           >
             OK
           </IonButton>
@@ -38,7 +39,7 @@
         />
       </IonItem>
     </IonContent>
-  </ion-modal>
+  </IonModal>
 </template>
 
 <script lang="ts">
@@ -96,23 +97,25 @@ export default defineComponent({
       },
     };
   },
+  beforeMount() {
+    const store = MHWBGStore();
+
+    this.expansions = { ...store.expansions };
+  },
   methods: {
-    // (keyof typeof errorsList)
+    dismiss() {
+      const modal = this.$refs.modal as typeof IonModal;
+      modal.$el.dismiss();
+    },
     toggleExpansion(expansionKey:ExpansionsName, event:ToggleCustomEvent):void {
       const store = MHWBGStore();
       // const expansionStatus = event.detail.checked;
       this.expansions[expansionKey].include = event.detail.checked;
       store.updateExpansions(expansionKey, event.detail.checked);
     },
-    confirm() {
-      // this.$refs.modal.$el.dismiss('confirm');
-    },
     onWillDismiss(ev: CustomEvent<OverlayEventDetail>) {
       console.log(ev);
       this.$emit('setting-modal-closed');
-      // if (ev.detail.role === 'confirm') {
-      //   this.message = `Hello, ${ev.detail.data}!`;
-      // }
     },
   },
 });
