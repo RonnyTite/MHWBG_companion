@@ -34,7 +34,8 @@
     ]
   },
   "include": [
-    "./**/.eslintrc.js",
+    "src",
+    ".eslintrc.js",
     "./**/*.js",
     "src/**/*.ts",
     "src/**/*.tsx",

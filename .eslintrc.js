@@ -26,6 +26,7 @@ module.exports = {
     ecmaVersion: 2020,
     // find the tsconfig.json nearest each source file
     project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
     extraFileExtensions: ['.vue'], // https://typescript-eslint.io/docs/linting/troubleshooting/#i-use-a-framework-like-vue-that-requires-custom-file-extensions-and-i-get-errors-like-you-should-add-parseroptionsextrafileextensions-to-your-config
   },
   rules: {

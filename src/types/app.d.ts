@@ -1,25 +1,71 @@
-import { defineStore } from 'pinia';
-import {
-  Game,
-  Monster,
-} from '@/types/app';
-
-// https://pinia.vuejs.org/core-concepts/
-interface MHWBGStore {
-  currentGame: Game | Record<string, never>
-  monsters : MonsterList | Record<string, never>
+export interface ArmorPiece {
+  name: string
+  type: number
+  rarity: number
+  description?: string
 }
 
-interface MonsterList {
-  [x:string]: Monster
+export interface Equipment {
+  head: ArmorPiece
+  torso: ArmorPiece
+  legs: ArmorPiece
 }
 
-const ancientForestCoreMonsterList:MonsterList = {
+interface MonsterRank {
+  rank: number
+  maxHealthPoint: number
+}
+
+export interface Monster {
+  name: string
+  icon: string
+  healthPoint: number
+  rank: Record<number, MonsterRank>
+}
+
+export interface Hunter {
+  name: string
+  healthPoint: number
+  maxHealthPoint: 8
+  equipment: {
+    head: Equipment
+    torso: Equipment
+    legs: Equipment
+  },
+  inventory: {
+    potions: Potions
+    bag?: Chest
+  }
+}
+
+export interface Item {
+  name: string
+  type: number
+  icon: string
+  rarity: number
+  quantity: number
+  description?: string
+}
+
+export interface Game {
+  hunters: Array<Hunter>
+  monster: Monster
+  inventory: Array<Item>
+}
+
+export interface Chest {
+  [x: string]: Item | Equipment | Potion
+}
+
+export interface Potions {
+  quantity: number
+}
+
+export interface AncientForestCoreMonsterList {
   jagras: {
     name: 'Jagras',
     icon: './assets/monsters/jagras.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -31,14 +77,12 @@ const ancientForestCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
   tobiKadachi: {
     name: 'Tobi Kadachi',
     icon: './assets/monsters/tobiKadachi.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -50,14 +94,12 @@ const ancientForestCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
   anjanath: {
     name: 'Anjanath',
     icon: './assets/monsters/anjanath.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -69,14 +111,12 @@ const ancientForestCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
   rathalos: {
     name: 'Rathalos',
     icon: './assets/monsters/rathalos.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -88,14 +128,12 @@ const ancientForestCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
   rathalosVariant: {
     name: 'Azure Rathalos',
     icon: './assets/monsters/rathalosVariant.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -107,18 +145,16 @@ const ancientForestCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
 
-};
+}
 
-const wilspireDesertCoreMonsterList:MonsterList = {
+export interface WilspireDesertCoreMonsterList {
   barroth: {
     name: 'barroth',
     icon: './assets/monsters/barroth.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -130,14 +166,12 @@ const wilspireDesertCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
   jyuratodus: {
     name: 'Jyuratodus',
     icon: './assets/monsters/jyuratodus.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -149,14 +183,12 @@ const wilspireDesertCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
   pukeiPukei: {
     name: 'Pukei Pukei',
     icon: './assets/monsters/pukeiPukei.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -168,14 +200,12 @@ const wilspireDesertCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
   diablos: {
     name: 'Diablos',
     icon: './assets/monsters/diablos.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -187,14 +217,12 @@ const wilspireDesertCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
   diablosVariant: {
     name: 'Black Diablos',
     icon: './assets/monsters/diablosVariant.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -206,18 +234,16 @@ const wilspireDesertCoreMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
 
-};
+}
 
-const kuluYaKuExpansionMonsterList:MonsterList = {
+export interface KuluYaKuExpansionMonsterList {
   kuluYaKu: {
     name: 'Kulu Ya Ku',
     icon: './assets/monsters/kuluYaKu.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -229,17 +255,15 @@ const kuluYaKuExpansionMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
-};
+}
 
-const kusharadaoraExpansionMonsterList:MonsterList = {
+export interface KusharadaoraExpansionMonsterList {
   kusharadaora: {
     name: 'Kusharadaora',
     icon: './assets/monsters/kusharadaora.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -251,17 +275,15 @@ const kusharadaoraExpansionMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
-};
+}
 
-const teostraExpansionMonsterList:MonsterList = {
+export interface TeostraExpansionMonsterList {
   teostra: {
     name: 'Teostra',
     icon: './assets/monsters/teostra.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -273,17 +295,15 @@ const teostraExpansionMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
-};
+}
 
-const nergiganteExpansionMonsterList:MonsterList = {
+export interface NergiganteExpansionMonsterList {
   nergigante: {
     name: 'Nergigante',
     icon: './assets/monsters/nergigante.png',
-    healthPoint: 65,
-    rank: {
+    rank:{
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -295,61 +315,6 @@ const nergiganteExpansionMonsterList:MonsterList = {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      },
-    },
+      }, }
   },
-};
-
-export default defineStore('MHWBG_Store', {
-  state: ():MHWBGStore => ({
-    currentGame: {},
-    monsters: {},
-  }),
-  actions: {
-    addAncientForestCoreMonsterList() {
-      this.monsters = {
-        ...ancientForestCoreMonsterList,
-        ...this.monsters,
-      };
-    },
-    addWilspireDesertCoreMonsterList() {
-      this.monsters = {
-        ...wilspireDesertCoreMonsterList,
-        ...this.monsters,
-      };
-    },
-    addKuluYaKuExpansionMonsterList() {
-      this.monsters = {
-        ...kuluYaKuExpansionMonsterList,
-        ...this.monsters,
-      };
-    },
-    addKusharadaoraExpansionMonsterList() {
-      this.monsters = {
-        ...kusharadaoraExpansionMonsterList,
-        ...this.monsters,
-      };
-    },
-    addTeostraExpansionMonsterList() {
-      this.monsters = {
-        ...teostraExpansionMonsterList,
-        ...this.monsters,
-      };
-    },
-    addNergiganteExpansionMonsterList() {
-      this.monsters = {
-        ...nergiganteExpansionMonsterList,
-        ...this.monsters,
-      };
-    },
-  },
-  persist: {
-    enabled: true,
-    strategies: [
-      {
-        key: 'MHWBG_companion',
-        storage: localStorage,
-      },
-    ],
-  },
-});
+}
