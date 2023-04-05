@@ -21,8 +21,21 @@
         <MonsterDial />
         <!-- <strong>Ready to create an app?</strong>
         <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p> -->
+        <div class="hunter-dials-container">
+          <HunterDial
+            v-for="(hunter, index) in hunters"
+            :key="index"
+            :hunter-props="hunter"
+            @create-hunter="openModalHunter"
+          />
+        </div>
 
-        <HunterDial @create-hunter="openModalHunter" />
+        <IonButton
+          v-if="hunters.length <4"
+          @click="createHunter"
+        >
+          Add Hunter
+        </IonButton>
       </div>
     </ion-content>
   </ion-page>
@@ -30,16 +43,30 @@
 
 <script lang="ts">
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar,
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton,
 } from '@ionic/vue';
 import HunterDial from '@/components/HunterDial.vue';
 import MonsterDial from '@/components/MonsterDial.vue';
 import { defineComponent } from 'vue';
+import { Hunter } from '@/types/app';
+import HunterController from '../scripts/HunterController';
 import MHWBGStore from '../store/Store';
 
 export default defineComponent({
   components: {
-    IonContent, IonHeader, IonPage, IonTitle, IonToolbar, HunterDial, MonsterDial,
+    IonContent,
+    IonHeader,
+    IonPage,
+    IonTitle,
+    IonToolbar,
+    HunterDial,
+    MonsterDial,
+    IonButton,
+  },
+  data() {
+    return {
+      hunters: [] as Array<Hunter>,
+    };
   },
   beforeMount() {
     const store = MHWBGStore();
@@ -48,6 +75,11 @@ export default defineComponent({
   methods: {
     openModalHunter() {
     // open Modal hunter
+    },
+    createHunter() {
+      // open creation modal
+      const newHunter = new HunterController({ name: 'Ronny' });
+      this.hunters.push(newHunter);
     },
   },
 });
@@ -81,5 +113,8 @@ export default defineComponent({
 
 #container a {
   text-decoration: none;
+}
+.hunter-dials-container {
+
 }
 </style>

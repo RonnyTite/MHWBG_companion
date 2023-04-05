@@ -1,44 +1,66 @@
 <template>
   <div>
-    <div> HP </div>
-    <div class="dial-container">
-      <div>
-        <ion-button @click="increaseHP">
-          -
-        </ion-button>
-      </div>
-      <div class="ion-margin-horizontal health_point text__monster">
-        {{ hunter.name }} {{ hunter.healthPoint }}
-      </div>
-      <div>
-        <ion-button @click="decreaseHP">
-          +
-        </ion-button>
-      </div>
-    </div>
+    <IonCard>
+      <IonCardHeader>
+        <IonCardTitle> {{ hunter.name }} HP </IonCardTitle>
+      </IonCardHeader>
+
+      <IonCardContent>
+        <div class="dial-container">
+          <div>
+            <ion-button @click="increaseHP">
+              -
+            </ion-button>
+          </div>
+          <div
+            class="ion-margin-horizontal health_point text__monster"
+            :class="renderHpColors"
+          >
+            {{ hunter.healthPoint }}
+          </div>
+          <div>
+            <ion-button @click="decreaseHP">
+              +
+            </ion-button>
+          </div>
+        </div>
+      </IonCardContent>
+    </IonCard>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { IonButton } from '@ionic/vue';
+import { defineComponent, PropType } from 'vue';
+import {
+  IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
+} from '@ionic/vue';
 import { Hunter } from '../types/app.d';
 
 export default defineComponent({
   components: {
-    IonButton,
+    IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent,
+  },
+  props: {
+    hunterProps: { type: Object as PropType<Hunter>, require: true, default: () => ({}) },
   },
   emits: ['createHunter'],
   data() {
     return {
-      hunter: {
-        healthPoint: 8,
-        maxHealthPoint: 8,
-      } as unknown as Hunter,
+      hunter: {} as Hunter,
     };
   },
-  mounted() {
-    this.createHunter();
+  computed: {
+    renderHpColors():string {
+      if (this.hunter.healthPoint === 0) {
+        return 'text-danger';
+      } if (this.hunter.healthPoint <= 4) {
+        return 'text-warning';
+      }
+      return 'text-dark';
+    },
+  },
+  beforeMount() {
+    this.hunter = { ...this.hunterProps };
   },
   methods: {
     increaseHP() {
@@ -56,9 +78,6 @@ export default defineComponent({
       }
       this.hunter.healthPoint += 1;
     },
-    createHunter() {
-      this.$emit('createHunter');
-    },
   },
 
 });
@@ -74,6 +93,8 @@ export default defineComponent({
      align-items: center;
  }
  .health_point {
-  font-size: 80px;;
+  font-size: 80px;
+  --ion-card-color: black;
  }
+
  </style>

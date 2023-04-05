@@ -27,15 +27,13 @@ export interface Hunter {
   name: string
   healthPoint: number
   maxHealthPoint: 8
-  equipment: {
+  equipment?: {
     head: Equipment
     torso: Equipment
     legs: Equipment
   },
-  inventory: {
-    potions: Potions
-    bag?: Chest
-  }
+  inventory: Chest | Record<string, never>
+
 }
 
 export interface Item {

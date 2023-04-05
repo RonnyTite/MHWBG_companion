@@ -8,10 +8,7 @@ http://ionicframework.com/docs/theming/ */
 
 /** CUSTOM **/
 
-  --blue: #1f6cf8;
-  --green: #1cf069;
-  --spacer: #ececec;
-  --red: #f25a41;
+  --ion-card-color: black;
 
 
   /** primary **/

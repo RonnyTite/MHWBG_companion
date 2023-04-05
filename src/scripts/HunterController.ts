@@ -1,5 +1,5 @@
 import {
-  Chest, Hunter,
+  Chest, Hunter, Potions,
 } from '../types/app.d';
 
 export default class HunterController {
@@ -9,13 +9,13 @@ export default class HunterController {
 
   readonly maxHealthPoint = 8;
 
-  equipment:Hunter['equipment'];
+  equipment?:Hunter['equipment'];
 
-  inventory: { bag?:Chest } = {
-    bag: undefined,
-  };
+  static potions : Potions;
 
-  constructor({ name, equipment }:{ name:Hunter['name'], equipment:Hunter['equipment'] }) {
+  inventory:Chest = {};
+
+  constructor({ name, equipment }:{ name:Hunter['name'], equipment?:Hunter['equipment'] }) {
     this.name = name;
     this.equipment = equipment;
   }
