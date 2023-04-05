@@ -20,7 +20,7 @@ const ancientForestCoreMonsterList:MonsterList = {
       },
     },
   },
-  tobiKadachi: {
+  tobikadachi: {
     name: 'Tobi Kadachi',
     icon: './assets/monsters/tobiKadachi.png',
     healthPoint: 0,
