@@ -6,10 +6,12 @@
           Monster Hunter World: Boardgame
         </IonTitle>
         <IonButtons slot="end">
-          <IonButton fill="clear">
+          <IonButton
+            fill="clear"
+            @click="toggleSettings"
+          >
             <IonIcon
               :icon="cogOutline"
-              @click="openSettings"
             />
           </IonButton>
         </IonButtons>
@@ -73,12 +75,16 @@
         </IonFabList>
       </IonFab>
     </IonContent>
+    <SettingsModal
+      :is-open="isSettingsOpen"
+      @setting-modal-closed="toggleSettings"
+    />
   </IonPage>
 </template>
 
 <script lang="ts">
 import {
-  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonFab, IonFabButton, IonImg, IonFabList,
+  IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonFab, IonFabButton, IonImg, IonFabList, IonButtons,
   IonIcon,
 } from '@ionic/vue';
 import HunterDial from '@/components/HunterDial.vue';
@@ -89,6 +95,7 @@ import MonsterScrollDown from '@/components/MonsterScrollDown.vue';
 import {
   add, cogOutline,
 } from 'ionicons/icons';
+import SettingsModal from '@/components/SettingsModal.vue';
 import Hunter from '../scripts/HunterController';
 import MHWBGStore from '../store/Store';
 
@@ -96,6 +103,7 @@ export default defineComponent({
   components: {
     IonContent,
     IonHeader,
+    IonButtons,
     IonPage,
     IonTitle,
     IonToolbar,
@@ -106,6 +114,7 @@ export default defineComponent({
     IonFab,
     IonFabButton,
     IonImg,
+    SettingsModal,
     IonIcon,
     IonFabList,
   },
@@ -125,14 +134,16 @@ export default defineComponent({
         name: string,
         rank: number,
       },
+      isSettingsOpen: false,
     };
   },
   beforeMount() {
     const store = MHWBGStore();
-    store.addAncientForestCoreMonsterList(); // Add expansion
+    store.enableExpansions(); // Add expansion
   },
   methods: {
-    openSettings() { // open Settings
+    toggleSettings() {
+      this.isSettingsOpen = !this.isSettingsOpen;
     },
     openModalHunter() { // open Modal hunter
     },

@@ -1,86 +1,14 @@
-export interface ArmorPiece {
-  name: string
-  type: number
-  rarity: number
-  description?: string
-}
+import { MonsterList } from '../types/app.d';
 
-export interface Equipment {
-  head: ArmorPiece
-  torso: ArmorPiece
-  legs: ArmorPiece
-}
-
-interface MonsterRank {
-  rank: number
-  maxHealthPoint: number
-}
-
-export interface Monster {
-  name: string
-  icon: string
-  healthPoint: number
-  rank: Record<number, MonsterRank>
-}
-
-export interface Hunter {
-  name: string
-  healthPoint: number
-  maxHealthPoint: 8
-  equipment?: {
-    head: Equipment
-    torso: Equipment
-    legs: Equipment
-  },
-  inventory: Chest | Record<string, never>
-
-}
-
-export interface Item {
-  name: string
-  type: number
-  icon: string
-  rarity: number
-  quantity: number
-  description?: string
-}
-
-export interface Game {
-  huntersList: Array<Hunter>
-  monsterList: Monster
-  inventory: Array<Item>
-  potions: Potions
-}
-
-export interface Chest {
-  [x: string]: Item | Equipment | Potion
-}
-
-export interface Potions {
-  quantity: number
-}
-
-export interface IncludedExpansions {
-  AncientForestCore: ExpansionInterface
-  WilspireDesertCore: ExpansionInterface
-  Teostra: ExpansionInterface
-  Nergigante: ExpansionInterface
-  Kusharadaora: ExpansionInterface
-  KuluYaKu: ExpansionInterface
-}
-export interface ExpansionInterface {
-  include: boolean,
-  name : string
-}
-
-export interface AncientForestCoreMonsterList {
+const ancientForestCoreMonsterList:MonsterList = {
   jagras: {
     name: 'Jagras',
     icon: './assets/monsters/jagras.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: 50,
       },
       1: {
         rank: 2,
@@ -89,12 +17,14 @@ export interface AncientForestCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
   tobiKadachi: {
     name: 'Tobi Kadachi',
     icon: './assets/monsters/tobiKadachi.png',
-    rank:{
+    healthPoint: 0,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -106,12 +36,14 @@ export interface AncientForestCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
   anjanath: {
     name: 'Anjanath',
     icon: './assets/monsters/anjanath.png',
-    rank:{
+    healthPoint: 0,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -123,15 +55,17 @@ export interface AncientForestCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
   rathalos: {
     name: 'Rathalos',
     icon: './assets/monsters/rathalos.png',
-    rank:{
+    healthPoint: 0,
+    rank: {
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: 80,
       },
       1: {
         rank: 2,
@@ -140,12 +74,14 @@ export interface AncientForestCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
-  rathalosVariant: {
+  rathalosvariant: {
     name: 'Azure Rathalos',
     icon: './assets/monsters/rathalosVariant.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -157,16 +93,18 @@ export interface AncientForestCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
 
-}
+};
 
-export interface WilspireDesertCoreMonsterList {
+const wilspireDesertCoreMonsterList:MonsterList = {
   barroth: {
     name: 'barroth',
     icon: './assets/monsters/barroth.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -178,12 +116,14 @@ export interface WilspireDesertCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
   jyuratodus: {
     name: 'Jyuratodus',
     icon: './assets/monsters/jyuratodus.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -195,12 +135,14 @@ export interface WilspireDesertCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
-  pukeiPukei: {
+  pukeipukei: {
     name: 'Pukei Pukei',
     icon: './assets/monsters/pukeiPukei.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -212,12 +154,14 @@ export interface WilspireDesertCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
   diablos: {
     name: 'Diablos',
     icon: './assets/monsters/diablos.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -229,12 +173,14 @@ export interface WilspireDesertCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
-  diablosVariant: {
+  diablosvariant: {
     name: 'Black Diablos',
     icon: './assets/monsters/diablosVariant.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -246,16 +192,18 @@ export interface WilspireDesertCoreMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
 
-}
+};
 
-export interface KuluYaKuExpansionMonsterList {
-  kuluYaKu: {
+const kuluYaKuExpansionMonsterList:MonsterList = {
+  kuluyaku: {
     name: 'Kulu Ya Ku',
     icon: './assets/monsters/kuluYaKu.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -267,15 +215,17 @@ export interface KuluYaKuExpansionMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
-}
+};
 
-export interface KusharadaoraExpanngsionMonsterList {
+const kusharadaoraExpansionMonsterList:MonsterList = {
   kusharadaora: {
     name: 'Kusharadaora',
     icon: './assets/monsters/kusharadaora.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -287,15 +237,17 @@ export interface KusharadaoraExpanngsionMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
-}
+};
 
-export interface TeostraExpansionMonsterList {
+const teostraExpansionMonsterList:MonsterList = {
   teostra: {
     name: 'Teostra',
     icon: './assets/monsters/teostra.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -307,15 +259,17 @@ export interface TeostraExpansionMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
-}
+};
 
-export interface NergiganteExpansionMonsterList {
+const nergiganteExpansionMonsterList:MonsterList = {
   nergigante: {
     name: 'Nergigante',
     icon: './assets/monsters/nergigante.png',
-    rank:{
+    healthPoint: 65,
+    rank: {
       0: {
         rank: 1,
         maxHealthPoint: 65,
@@ -327,17 +281,16 @@ export interface NergiganteExpansionMonsterList {
       2: {
         rank: 3,
         maxHealthPoint: 65,
-      }, }
+      },
+    },
   },
-}
+};
 
-export interface Campaign extends Game {
-  expansions:IncludedExpansions
-  name?:string
-}
-
-interface MonsterList {
-  [x:string]: Monster
-}
-// eslint-disable-next-line max-len
-export type ExpansionsName = 'AncientForestCore' | 'WilspireDesertCore' | 'TeostraExpansion' | 'NergiganteExpansion' | 'KusharadaoraExpansion' | 'KuluYaKuExpansion';
+export {
+  ancientForestCoreMonsterList,
+  wilspireDesertCoreMonsterList,
+  kuluYaKuExpansionMonsterList,
+  kusharadaoraExpansionMonsterList,
+  teostraExpansionMonsterList,
+  nergiganteExpansionMonsterList,
+};

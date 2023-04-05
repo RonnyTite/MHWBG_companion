@@ -26,9 +26,9 @@
             @ion-change="emitSelection"
           >
             <ion-select-option
-              v-for="(monster, index) in monsters"
+              v-for="([monsterKeyName, monster], index) in monstersList"
               :key="index"
-              :value="monster.name"
+              :value="monsterKeyName"
             >
               {{ monster.name }}
             </ion-select-option>
@@ -59,11 +59,13 @@ export default defineComponent({
     };
   },
   computed: {
-
+    monstersList() {
+      const store = MHWBGStore();
+      //   this.monsters = Object.values(store.monsters);
+      return Object.entries(store.monsters);
+    },
   },
   beforeMount() {
-    const store = MHWBGStore();
-    this.monsters = Object.values(store.monsters);
   },
   mounted() {
     this.setActiveRank();
