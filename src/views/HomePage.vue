@@ -18,9 +18,14 @@
       </ion-header>
 
       <div id="container">
-        <MonsterDial />
-        <!-- <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p> -->
+        <MonsterDial
+          v-if="monsterProperties.name"
+          :monster-properties="monsterProperties"
+        />
+        <MonsterScrollDown
+          v-else
+          @monster-selected="selectMonster"
+        />
         <div class="hunter-dials-container">
           <HunterDial
             v-for="(hunter, index) in hunters"
@@ -49,6 +54,7 @@ import HunterDial from '@/components/HunterDial.vue';
 import MonsterDial from '@/components/MonsterDial.vue';
 import { defineComponent } from 'vue';
 import { Hunter } from '@/types/app';
+import MonsterScrollDown from '@/components/MonsterScrollDown.vue';
 import HunterController from '../scripts/HunterController';
 import MHWBGStore from '../store/Store';
 
@@ -61,11 +67,19 @@ export default defineComponent({
     IonToolbar,
     HunterDial,
     MonsterDial,
+    MonsterScrollDown,
     IonButton,
   },
   data() {
     return {
       hunters: [] as Array<Hunter>,
+      monsterProperties: {
+        name: '',
+        rank: 0,
+      } as {
+        name: string,
+        rank: number,
+      },
     };
   },
   beforeMount() {
@@ -80,6 +94,9 @@ export default defineComponent({
       // open creation modal
       const newHunter = new HunterController({ name: 'Ronny' });
       this.hunters.push(newHunter);
+    },
+    selectMonster({ name, rank }:{ name:string, rank:number }) {
+      this.monsterProperties = { name, rank };
     },
   },
 });

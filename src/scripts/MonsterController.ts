@@ -21,7 +21,7 @@ export default class MonsterController {
   constructor({ name, monsterRank }:{ name:Monster['name'], monsterRank:number }) {
     this.name = name;
 
-    const wyvern = fetchMonsterProperties(name);
+    const wyvern = fetchMonsterProperties(name.toLowerCase());
     const { maxHealthPoint } = wyvern.rank[monsterRank - 1];
 
     this.name = wyvern.name;

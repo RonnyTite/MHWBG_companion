@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { IonButton, IonImg } from '@ionic/vue';
 import { Monster } from '../types/app.d';
 import MonsterController from '../scripts/MonsterController';
@@ -34,6 +34,15 @@ export default defineComponent({
     IonButton,
     IonImg,
   },
+  props: {
+    monsterProperties: {
+      type: Object as PropType<{
+        name: string,
+        rank: number,
+      }>,
+      required: true,
+    },
+  },
   data() {
     return {
       monster: {} as Monster,
@@ -41,7 +50,9 @@ export default defineComponent({
     };
   },
   beforeMount() {
-    this.monster = new MonsterController({ name: 'anjanath', monsterRank: this.monsterRank });
+    debugger;
+    const { name, rank } = this.monsterProperties;
+    this.monster = new MonsterController({ name, monsterRank: rank });
   },
   methods: {
     increaseHP() {
@@ -54,7 +65,7 @@ export default defineComponent({
       }
     },
     decreaseHP() {
-      if (this.monster.healthPoint >= this.monster.rank[this.monsterRank].maxHealthPoint) {
+      if (this.monster.healthPoint >= this.monster.rank[this.monsterProperties.rank].maxHealthPoint) {
         return;
       }
       this.monster.healthPoint += 1;
