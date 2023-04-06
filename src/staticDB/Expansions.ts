@@ -101,7 +101,7 @@ const ancientForestCoreMonsterList:MonsterList = {
 
 const wilspireDesertCoreMonsterList:MonsterList = {
   barroth: {
-    name: 'barroth',
+    name: 'Barroth',
     icon: './assets/monsters/barroth.png',
     healthPoint: 65,
     rank: {

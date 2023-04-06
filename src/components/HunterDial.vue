@@ -41,9 +41,13 @@
         </div>
         <IonGrid>
           <IonRow class="ion-justify-content-center">
-            <IonCol size="2">
+            <IonCol
+              v-if="palicoEnabled"
+              size="2"
+            >
               <IonImg
                 class="item-img"
+
                 src="./assets/palico.jpg"
               />
             </IonCol>
@@ -96,6 +100,7 @@ export default defineComponent({
   props: {
     hunterProps: { type: Object as PropType<Hunter>, require: true, default: () => ({}) },
     hunterIndex: { type: Number, require: true, default: 0 },
+    palicoEnabled: { type: Boolean, require: true, default: false },
   },
   emits: ['remove-hunter'],
   setup() {
@@ -116,6 +121,9 @@ export default defineComponent({
         return 'text-warning';
       }
       return 'text-dark';
+    },
+    renderPalicoStatus() {
+      return { display: this.palicoDisabled ? 'none' : 'initial' };
     },
   },
   beforeMount() {

@@ -22,24 +22,42 @@
         id="container"
         class="ion-margin"
       >
-        <MonsterDial
-          v-if="monsterProperties.name"
-          :monster-properties="monsterProperties"
-          @remove-monster="removeMonster"
-        />
-        <MonsterScrollDown
-          v-else
-          @monster-selected="selectMonster"
-        />
+        <IonGrid>
+          <IonRow class="ion-justify-content-center">
+            <IonCol size="4">
+              <MonsterDial
+                v-if="monsterProperties.name"
+                :monster-properties="monsterProperties"
+                @remove-monster="removeMonster"
+              />
+              <MonsterScrollDown
+                v-else
+                @monster-selected="selectMonster"
+              />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
         <div class="hunter-dials-container">
-          <HunterDial
-            v-for="(hunter, index) in hunters"
-            :key="index"
-            :hunter-props="hunter"
-            :hunter-index="index"
-            @create-hunter="openModalHunter"
-            @remove-hunter="removeHunter"
-          />
+          <IonGrid>
+            <IonRow>
+              <IonCol
+                v-for="(hunter, index) in hunters"
+                :key="index"
+                size="12"
+                size-lg="3"
+                size-md="6"
+              >
+                <HunterDial
+                  :hunter-props="hunter"
+                  :hunter-index="index"
+                  :palico-enabled="hunters.length <= 2"
+                  @create-hunter="openModalHunter"
+                  @remove-hunter="removeHunter"
+                />
+              </IonCol>
+            </IonRow>
+          </IonGrid>
         </div>
 
         <IonButton
@@ -85,7 +103,7 @@
 <script lang="ts">
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonFab, IonFabButton, IonImg, IonFabList, IonButtons,
-  IonIcon,
+  IonIcon, IonGrid, IonRow, IonCol,
 } from '@ionic/vue';
 import HunterDial from '@/components/HunterDial.vue';
 import MonsterDial from '@/components/MonsterDial.vue';
@@ -117,6 +135,9 @@ export default defineComponent({
     SettingsModal,
     IonIcon,
     IonFabList,
+    IonGrid,
+    IonRow,
+    IonCol,
   },
   setup() {
     return {
