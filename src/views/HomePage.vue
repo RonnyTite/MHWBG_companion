@@ -205,6 +205,7 @@ export default defineComponent({
  }
  .health_point {
   font-size: 80px;
+  line-height: 60px;
  }
  .close{
   position: absolute;
@@ -214,5 +215,12 @@ export default defineComponent({
  .add-game-btn {
   width: 20px;
   height: 20px;
- }
+}
+.item-img{
+ width: 40px;
+ height: 40px;
+ display: inline-block;
+ text-align: center;
+ cursor:pointer;
+}
 </style>

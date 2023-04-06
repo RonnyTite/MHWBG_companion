@@ -39,6 +39,41 @@
             </IonButton>
           </div>
         </div>
+        <IonGrid>
+          <IonRow class="ion-justify-content-center">
+            <IonCol size="2">
+              <IonImg
+                class="item-img"
+                src="./assets/palico.jpg"
+              />
+            </IonCol>
+            <IonCol size="1" /> <!-- offset 1 -->
+            <IonCol size="2">
+              <IonImg
+                class="item-img"
+                src="./assets/weapons/sns_1.png"
+              />
+            </IonCol>
+            <IonCol size="2">
+              <IonImg
+                class="item-img"
+                src="./assets/armors/armor_head_1.png"
+              />
+            </IonCol>
+            <IonCol size="2">
+              <IonImg
+                class="item-img"
+                src="./assets/armors/armor_torso_1.png"
+              />
+            </IonCol>
+            <IonCol size="2">
+              <IonImg
+                class="item-img"
+                src="./assets/armors/armor_legs_1.png"
+              />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonCardContent>
     </IonCard>
   </div>
@@ -47,7 +82,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import {
-  IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon,
+  IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonGrid, IonRow, IonCol, IonImg,
 } from '@ionic/vue';
 import {
   closeOutline,
@@ -56,7 +91,7 @@ import { Hunter } from '../types/app.d';
 
 export default defineComponent({
   components: {
-    IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon,
+    IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonGrid, IonRow, IonCol, IonImg,
   },
   props: {
     hunterProps: { type: Object as PropType<Hunter>, require: true, default: () => ({}) },

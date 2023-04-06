@@ -12,7 +12,7 @@ export interface Equipment {
 }
 
 interface MonsterRank {
-  rank: number
+  stars: number
   maxHealthPoint: number
 }
 

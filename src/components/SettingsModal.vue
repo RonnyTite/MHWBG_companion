@@ -6,11 +6,6 @@
   >
     <IonHeader>
       <IonToolbar>
-        <!-- <IonButtons slot="start">
-          <ion-button @click="cancel()">
-            Cancel
-          </ion-button>
-        </IonButtons> -->
         <IonTitle>Expansions</IonTitle>
         <IonButtons slot="end">
           <IonButton
@@ -67,10 +62,6 @@ import {
   ExpansionsName,
 } from '../types/app.d';
 
-// interface Expansions {
-//   expansions: Record<ExpansionsName, ExpansionInterface>
-// }
-
 export default defineComponent({
   components: {
     IonButtons,
@@ -85,6 +76,7 @@ export default defineComponent({
     IonLabel,
   },
   props: { isOpen: { type: Boolean, require: true, default: false } },
+  emits: ['setting-modal-closed'],
   data() {
     return {
       expansions: {

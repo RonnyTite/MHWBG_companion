@@ -4,6 +4,10 @@
       <IonCardHeader>
         <IonCardTitle>
           <span> {{ monster.name }} HP</span>
+          <span><IonImg
+            class="item-img"
+            :src="`./assets/rank/${monsterProperties.rank}_stars.png`"
+          /></span>
           <span class="close">
             <IonButton
               class="close-btn"
@@ -76,7 +80,6 @@ export default defineComponent({
   data() {
     return {
       monster: {} as MonsterInterface,
-      monsterRank: 1 as number,
     };
   },
   beforeMount() {

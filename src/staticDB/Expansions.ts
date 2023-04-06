@@ -6,16 +6,16 @@ const ancientForestCoreMonsterList:MonsterList = {
     icon: './assets/monsters/jagras.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
+      1: {
+        stars: 1,
         maxHealthPoint: 50,
       },
-      1: {
-        rank: 2,
+      2: {
+        stars: 2,
         maxHealthPoint: 65,
       },
-      2: {
-        rank: 3,
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -25,16 +25,16 @@ const ancientForestCoreMonsterList:MonsterList = {
     icon: './assets/monsters/tobiKadachi.png',
     healthPoint: 0,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -44,16 +44,16 @@ const ancientForestCoreMonsterList:MonsterList = {
     icon: './assets/monsters/anjanath.png',
     healthPoint: 0,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -63,16 +63,16 @@ const ancientForestCoreMonsterList:MonsterList = {
     icon: './assets/monsters/rathalos.png',
     healthPoint: 0,
     rank: {
-      0: {
-        rank: 1,
+      1: {
+        stars: 1,
         maxHealthPoint: 80,
       },
-      1: {
-        rank: 2,
+      2: {
+        stars: 2,
         maxHealthPoint: 65,
       },
-      2: {
-        rank: 3,
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -82,16 +82,16 @@ const ancientForestCoreMonsterList:MonsterList = {
     icon: './assets/monsters/rathalosVariant.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      4: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -105,16 +105,16 @@ const wilspireDesertCoreMonsterList:MonsterList = {
     icon: './assets/monsters/barroth.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -124,16 +124,16 @@ const wilspireDesertCoreMonsterList:MonsterList = {
     icon: './assets/monsters/jyuratodus.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -143,16 +143,16 @@ const wilspireDesertCoreMonsterList:MonsterList = {
     icon: './assets/monsters/pukeiPukei.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -162,16 +162,16 @@ const wilspireDesertCoreMonsterList:MonsterList = {
     icon: './assets/monsters/diablos.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
-        maxHealthPoint: 65,
+        stars: 1,
+        maxHealthPoint: 80,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -181,16 +181,16 @@ const wilspireDesertCoreMonsterList:MonsterList = {
     icon: './assets/monsters/diablosVariant.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      4: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -204,16 +204,16 @@ const kuluYaKuExpansionMonsterList:MonsterList = {
     icon: './assets/monsters/kuluYaKu.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -226,16 +226,16 @@ const kusharadaoraExpansionMonsterList:MonsterList = {
     icon: './assets/monsters/kusharadaora.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      5: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -248,16 +248,16 @@ const teostraExpansionMonsterList:MonsterList = {
     icon: './assets/monsters/teostra.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      5: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },
@@ -270,16 +270,16 @@ const nergiganteExpansionMonsterList:MonsterList = {
     icon: './assets/monsters/nergigante.png',
     healthPoint: 65,
     rank: {
-      0: {
-        rank: 1,
-        maxHealthPoint: 65,
-      },
       1: {
-        rank: 2,
+        stars: 1,
         maxHealthPoint: 65,
       },
       2: {
-        rank: 3,
+        stars: 2,
+        maxHealthPoint: 65,
+      },
+      3: {
+        stars: 3,
         maxHealthPoint: 65,
       },
     },

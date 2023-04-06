@@ -1,21 +1,14 @@
 <template>
   <div>
     <div class="text__monster rank-list">
+      Rank:
       <span
-        data-rank="1"
+        v-for="(stars, key) in constructRank"
+        :key="key"
+        :data-rank="stars"
         class="rank-item"
         @click="selectRank"
-      >1</span>
-      <span
-        data-rank="2"
-        class="rank-item"
-        @click="selectRank"
-      >2</span>
-      <span
-        data-rank="3"
-        class="rank-item"
-        @click="selectRank"
-      >3</span>
+      >{{ stars }}</span>
     </div>
     <div>
       <IonList>
@@ -23,12 +16,14 @@
           <IonSelect
             aria-label="wyvern"
             placeholder="Select Wyvern"
+            :disabled="rank ===0"
             @ion-change="emitSelection"
           >
             <ion-select-option
               v-for="([monsterKeyName, monster], index) in monstersList"
               :key="index"
               :value="monsterKeyName"
+              :disabled="!Object.keys(monster.rank).includes(rank.toString())"
             >
               {{ monster.name }}
             </ion-select-option>
@@ -55,17 +50,25 @@ export default defineComponent({
   data() {
     return {
       monsters: [] as Array<Monster>,
-      rank: 1 as number,
+      rank: 0 as number,
     };
   },
   computed: {
     monstersList() {
       const store = MHWBGStore();
-      //   this.monsters = Object.values(store.monsters);
       return Object.entries(store.monsters);
     },
-  },
-  beforeMount() {
+    constructRank():Array<number> {
+      const ranks:Array<number> = [];
+
+      this.monstersList.forEach(([, monster]) => {
+        const keys = Object.keys(monster.rank);
+        keys.forEach((index) => {
+          ranks.push(parseInt(index, 10));
+        });
+      });
+      return [...new Set(ranks)];
+    },
   },
   mounted() {
     this.setActiveRank();

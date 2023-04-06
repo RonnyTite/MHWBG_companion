@@ -22,7 +22,7 @@ export default class Monster {
     this.name = name;
 
     const wyvern = fetchMonsterProperties(name.toLowerCase());
-    const { maxHealthPoint } = wyvern.rank[monsterRank - 1];
+    const { maxHealthPoint } = wyvern.rank[monsterRank];
 
     this.name = wyvern.name;
     this.icon = wyvern.icon;
