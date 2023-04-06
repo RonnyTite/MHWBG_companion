@@ -27,21 +27,27 @@
           class="monster-img"
           :src="monster.icon"
         />
-        <div class="dial-container">
-          <div>
-            <ion-button @click="increaseHP">
-              -
-            </ion-button>
-          </div>
-          <div class="ion-margin-horizontal text__monster health_point">
-            {{ monster.healthPoint }}
-          </div>
-          <div>
-            <ion-button @click="decreaseHP">
-              +
-            </ion-button>
-          </div>
-        </div>
+        <IonGrid>
+          <IonRow class="ion-justify-content-center">
+            <IonCol size="2">
+              <IonButton @click="increaseHP">
+                -
+              </IonButton>
+            </IonCol>
+            <IonCol
+              class="ion-margin-horizontal health_point text__monster"
+              size="5"
+              :class="renderHpColors"
+            >
+              {{ monster.healthPoint }}
+            </IonCol>
+            <IonCol size="2">
+              <IonButton @click="decreaseHP">
+                +
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonCardContent>
     </IonCard>
   </div>
@@ -50,7 +56,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import {
-  IonButton, IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonIcon,
+  IonButton, IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonGrid, IonRow, IonCol,
 } from '@ionic/vue';
 import {
   closeOutline,
@@ -60,7 +66,7 @@ import Monster from '../scripts/MonsterController';
 
 export default defineComponent({
   components: {
-    IonButton, IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonIcon,
+    IonButton, IonCard, IonImg, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonGrid, IonRow, IonCol,
   },
   props: {
     monsterProperties: {
@@ -81,6 +87,19 @@ export default defineComponent({
     return {
       monster: {} as MonsterInterface,
     };
+  },
+  computed: {
+    renderHpColors():string {
+      const { maxHealthPoint } = this.monster.rank[this.monsterProperties.rank];
+      const lowHealth = Math.floor(maxHealthPoint / 3);
+
+      if (this.monster.healthPoint <= 8) {
+        return 'text-danger';
+      } if (this.monster.healthPoint <= lowHealth) {
+        return 'text-warning';
+      }
+      return 'text-dark';
+    },
   },
   beforeMount() {
     const { name, rank } = this.monsterProperties;

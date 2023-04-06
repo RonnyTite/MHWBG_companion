@@ -21,24 +21,28 @@
 
       <IonCardContent>
         <div>{{ hunter.name }} HP </div>
-        <div class="dial-container">
-          <div>
-            <IonButton @click="increaseHP">
-              -
-            </IonButton>
-          </div>
-          <div
-            class="ion-margin-horizontal health_point text__monster"
-            :class="renderHpColors"
-          >
-            {{ hunter.healthPoint }}
-          </div>
-          <div>
-            <IonButton @click="decreaseHP">
-              +
-            </IonButton>
-          </div>
-        </div>
+
+        <IonGrid>
+          <IonRow class="ion-justify-content-center">
+            <IonCol size="2">
+              <IonButton @click="increaseHP">
+                -
+              </IonButton>
+            </IonCol>
+            <IonCol
+              class="ion-margin-horizontal health_point text__monster"
+              :class="renderHpColors"
+              size="3"
+            >
+              {{ hunter.healthPoint }}
+            </IonCol>
+            <IonCol size="2">
+              <IonButton @click="decreaseHP">
+                +
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
         <IonGrid>
           <IonRow class="ion-justify-content-center">
             <IonCol
@@ -121,9 +125,6 @@ export default defineComponent({
         return 'text-warning';
       }
       return 'text-dark';
-    },
-    renderPalicoStatus() {
-      return { display: this.palicoDisabled ? 'none' : 'initial' };
     },
   },
   beforeMount() {

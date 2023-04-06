@@ -33,6 +33,7 @@
           @ion-change="toggleExpansion(expansionKey as ExpansionsName, $event)"
         />
       </IonItem>
+      <!-- PapyalModule -->
     </IonContent>
   </IonModal>
 </template>

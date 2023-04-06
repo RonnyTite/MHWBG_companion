@@ -24,7 +24,10 @@
       >
         <IonGrid>
           <IonRow class="ion-justify-content-center">
-            <IonCol size="4">
+            <IonCol
+              size="12"
+              size-md="4"
+            >
               <MonsterDial
                 v-if="monsterProperties.name"
                 :monster-properties="monsterProperties"
@@ -213,20 +216,10 @@ export default defineComponent({
 #container a {
   text-decoration: none;
 }
-.hunter-dials-container {
 
-}
-.dial-container {
-     display: flex;
-     flex-direction: row;
-     flex-wrap: nowrap;
-     align-content: center;
-     justify-content: center;
-     align-items: center;
- }
  .health_point {
   font-size: 80px;
-  line-height: 60px;
+  line-height: 20px;
  }
  .close{
   position: absolute;
