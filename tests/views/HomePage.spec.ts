@@ -1,8 +1,9 @@
 // https://pinia.vuejs.org/cookbook/testing.html#unit-testing-a-store
 import { setActivePinia, createPinia } from 'pinia';
 import Sinon from 'sinon';
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import HomePage from '@/views/HomePage.vue';
+import MHWBGStore from '@/store/Store';
 
 describe('Test Pinia Store', () => {
   let wrapper:any;
@@ -12,10 +13,29 @@ describe('Test Pinia Store', () => {
     // `useStore(pinia)`
     setActivePinia(createPinia());
     Sinon.stub(console, 'debug');
-
-    wrapper = shallowMount(HomePage);
+    const store = MHWBGStore();
+    store.updateExpansions('AncientForestCore', true);
+    wrapper = mount(HomePage);
   });
   afterEach(() => {
     Sinon.restore();
+  });
+  it('should remove monster', async () => {
+    await wrapper.setData({
+      monsterProperties: {
+        name: 'rathalos',
+        rank: 1,
+      },
+    });
+    expect(wrapper.vm.monsterProperties).toEqual({
+      name: 'rathalos',
+      rank: 1,
+    });
+    wrapper.vm.removeMonster();
+
+    expect(wrapper.vm.monsterProperties).toEqual({
+      name: '',
+      rank: 0,
+    });
   });
 });

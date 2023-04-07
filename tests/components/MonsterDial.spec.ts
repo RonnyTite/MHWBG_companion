@@ -1,7 +1,7 @@
 // https://pinia.vuejs.org/cookbook/testing.html#unit-testing-a-store
 import { setActivePinia, createPinia } from 'pinia';
 import Sinon from 'sinon';
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import MonsterDial from '@/components/MonsterDial.vue';
 import MHWBGStore from '@/store/Store';
 
@@ -14,7 +14,7 @@ describe('Mosnter Dial ', () => {
     setActivePinia(createPinia());
     const store = MHWBGStore();
     store.updateExpansions('AncientForestCore', true);
-    wrapper = shallowMount(MonsterDial, {
+    wrapper = mount(MonsterDial, {
       props: {
         monsterProperties: {
           name: 'rathalos',

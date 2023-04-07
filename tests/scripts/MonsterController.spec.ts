@@ -1,6 +1,7 @@
 import Monster from '@/scripts/MonsterController';
 import { setActivePinia, createPinia } from 'pinia';
 import Sinon from 'sinon';
+import MHWBGStore from '@/store/Store';
 
 describe('Create new Monster', () => {
   beforeEach(() => {
@@ -8,12 +9,14 @@ describe('Create new Monster', () => {
     // up by any useStore() call without having to pass it to it:
     // `useStore(pinia)`
     setActivePinia(createPinia());
+    const store = MHWBGStore();
+    store.updateExpansions('AncientForestCore', true);
   });
   afterEach(() => {
     Sinon.restore();
   });
 
-  it('new Hunter', () => {
+  it('new Monster', () => {
     const monster = new Monster({ name: 'rathalos', monsterRank: 1 });
 
     expect(monster).toEqual({
@@ -21,8 +24,18 @@ describe('Create new Monster', () => {
       icon: './assets/monsters/rathalos.png',
       healthPoint: 80,
       rank: {
-        stars: 1,
-        maxHealthPoint: 80,
+        1: {
+          stars: 1,
+          maxHealthPoint: 80,
+        },
+        2: {
+          stars: 2,
+          maxHealthPoint: 65,
+        },
+        4: {
+          stars: 3,
+          maxHealthPoint: 65,
+        },
       },
     });
   });
