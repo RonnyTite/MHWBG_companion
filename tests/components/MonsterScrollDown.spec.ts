@@ -12,7 +12,7 @@ describe('Monster scroll down', () => {
         detail: {
           value: 'rathalos',
         },
-      };
+      } as CustomEvent;
       const { emitSelection } = MonsterScrollDown.methods;
       expect(emitSelection.call(context, $event));
       Sinon.assert.calledOnceWithExactly(context.$emit, 'monster-selected', { name: 'rathalos', rank: 2 });
