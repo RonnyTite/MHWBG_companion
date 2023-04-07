@@ -54,7 +54,6 @@ import {
 import { defineComponent } from 'vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  OverlayEventDetail,
   ToggleCustomEvent,
 } from '@ionic/core/components';
 import MHWBGStore from '../store/Store';
@@ -102,12 +101,10 @@ export default defineComponent({
     },
     toggleExpansion(expansionKey:ExpansionsName, event:ToggleCustomEvent):void {
       const store = MHWBGStore();
-      // const expansionStatus = event.detail.checked;
       this.expansions[expansionKey].include = event.detail.checked;
       store.updateExpansions(expansionKey, event.detail.checked);
     },
-    onWillDismiss(ev: CustomEvent<OverlayEventDetail>) {
-      console.log(ev);
+    onWillDismiss() {
       this.$emit('setting-modal-closed');
     },
   },

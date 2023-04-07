@@ -71,7 +71,7 @@ const ancientForestCoreMonsterList:MonsterList = {
         stars: 2,
         maxHealthPoint: 65,
       },
-      3: {
+      4: {
         stars: 3,
         maxHealthPoint: 65,
       },
@@ -278,7 +278,7 @@ const nergiganteExpansionMonsterList:MonsterList = {
         stars: 2,
         maxHealthPoint: 65,
       },
-      3: {
+      5: {
         stars: 3,
         maxHealthPoint: 65,
       },

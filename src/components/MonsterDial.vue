@@ -30,7 +30,7 @@
         <IonGrid>
           <IonRow class="ion-justify-content-center">
             <IonCol size="2">
-              <IonButton @click="increaseHP">
+              <IonButton @click="decreaseHP">
                 -
               </IonButton>
             </IonCol>
@@ -42,7 +42,7 @@
               {{ monster.healthPoint }}
             </IonCol>
             <IonCol size="2">
-              <IonButton @click="decreaseHP">
+              <IonButton @click="increaseHP">
                 +
               </IonButton>
             </IonCol>
@@ -102,11 +102,14 @@ export default defineComponent({
     },
   },
   beforeMount() {
-    const { name, rank } = this.monsterProperties;
-    this.monster = new Monster({ name, monsterRank: rank });
+    this.initPage();
   },
   methods: {
-    increaseHP() {
+    initPage() {
+      const { name, rank } = this.monsterProperties;
+      this.monster = new Monster({ name, monsterRank: rank });
+    },
+    decreaseHP() {
       if (this.monster.healthPoint === 0) {
         return;
       }
@@ -115,7 +118,7 @@ export default defineComponent({
         // DISPLAY CARTED
       }
     },
-    decreaseHP() {
+    increaseHP() {
       if (this.monster.healthPoint >= this.monster.rank[this.monsterProperties.rank].maxHealthPoint) {
         return;
       }

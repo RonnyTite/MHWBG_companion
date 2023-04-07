@@ -16,6 +16,7 @@
           <IonSelect
             aria-label="wyvern"
             placeholder="Select Wyvern"
+            class="monster-selector"
             :disabled="rank ===0"
             @ion-change="emitSelection"
           >
@@ -40,7 +41,6 @@ import {
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import MHWBGStore from '../store/Store';
-import { Monster } from '../types/app.d';
 
 export default defineComponent({
   components: {
@@ -49,13 +49,13 @@ export default defineComponent({
   emits: ['monster-selected'],
   data() {
     return {
-      monsters: [] as Array<Monster>,
       rank: 0 as number,
     };
   },
   computed: {
     monstersList() {
       const store = MHWBGStore();
+      console.debug('monstersList', store.monsters);
       return Object.entries(store.monsters);
     },
     constructRank():Array<number> {
