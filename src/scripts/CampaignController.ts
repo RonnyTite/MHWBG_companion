@@ -2,6 +2,7 @@ import {
   Monster, Hunter, Potions, Chest, IncludedExpansions,
 } from '../types/app';
 import GameController from './GameController';
+// import MHWBGStore from '../store/Store';
 
 export default class Campaign {
   name = '';
@@ -17,11 +18,13 @@ export default class Campaign {
   expansions: IncludedExpansions;
 
   constructor({
-    name, hunters, monsters, expansions,
+    name, hunters, expansions,
   }:{
-    name:string, hunters:Array<Hunter>, monsters:Record<string, Monster>, expansions:IncludedExpansions,
+    name:string, hunters:Array<Hunter>, expansions:IncludedExpansions,
   }) {
-    const game = new GameController({ hunters, monsters });
+    const game = new GameController({ hunters, expansions });
+    // const store = MHWBGStore();
+
     this.name = name;
     this.huntersList = game.huntersList;
     this.monsterList = game.monsterList;

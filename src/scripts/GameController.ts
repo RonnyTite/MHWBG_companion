@@ -1,6 +1,16 @@
 import {
-  Monster, Hunter, Potions, Chest,
+  Monster, Hunter, Potions, Chest, ExpansionsName, ExpansionInterface,
 } from '../types/app';
+import MHWBGStore from '../store/Store';
+
+function enableExpansions(expansions:Record<ExpansionsName, ExpansionInterface>) {
+  const store = MHWBGStore();
+  Object.entries(expansions).forEach(([expansionKey, expansion]) => {
+    if (expansion.include) {
+      store.updateExpansions(expansionKey as ExpansionsName, expansion.include);
+    }
+  });
+}
 
 export default class Campaign {
   huntersList: Array<Hunter>;
@@ -12,11 +22,14 @@ export default class Campaign {
   inventory:Chest = [];
 
   constructor({
-    hunters, monsters,
+    hunters, expansions,
   }:{
-    hunters:Array<Hunter>, monsters:Record<string, Monster>
+    hunters:Array<Hunter>,
+    expansions:Record<ExpansionsName, ExpansionInterface>
   }) {
+    const store = MHWBGStore();
+    enableExpansions(expansions);
     this.huntersList = hunters;
-    this.monsterList = monsters;
+    this.monsterList = store.monsters;
   }
 }

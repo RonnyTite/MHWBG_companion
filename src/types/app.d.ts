@@ -63,10 +63,10 @@ export interface Potions {
 export interface IncludedExpansions {
   AncientForestCore: ExpansionInterface
   WilspireDesertCore: ExpansionInterface
-  Teostra: ExpansionInterface
-  Nergigante: ExpansionInterface
-  Kusharadaora: ExpansionInterface
-  KuluYaKu: ExpansionInterface
+  TeostraExpansion: ExpansionInterface
+  NergiganteExpansion: ExpansionInterface
+  KusharadaoraExpansion: ExpansionInterface
+  KuluYaKuExpansion: ExpansionInterface
 }
 export interface ExpansionInterface {
   include: boolean,
