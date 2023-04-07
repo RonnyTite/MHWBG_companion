@@ -64,13 +64,13 @@ export default defineStore('MHWBG_Store', {
             }
 
             case 'NergiganteExpansion': {
-              this.addAncientForestCoreMonsterList();
+              this.addNergiganteExpansionMonsterList();
 
               break;
             }
 
             case 'KusharadaoraExpansion': {
-              this.addNergiganteExpansionMonsterList();
+              this.addKusharadaoraExpansionMonsterList();
 
               break;
             }
