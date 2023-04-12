@@ -1,4 +1,4 @@
-# GameDex
+# MHWBG Companion
 
 ## Installation 
 

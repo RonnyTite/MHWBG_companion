@@ -1,9 +1,9 @@
 {
-  "name": "game_dex",
+  "name": "mhwbg_companion_app",
   "version": "0.0.1",
   "private": true,
   "author": "Ronny Tite",
-  "description": "An Ionic project for gameDex",
+  "description": "An Ionic project for MHWBG Companion App",
   "scripts": {
     "build": "vue-cli-service build && npx cap sync",
     "build:apk": "npm run build && cd android && gradlew assembleDebug && cd app/build/outputs/apk/debug && explorer .",
