@@ -82,6 +82,7 @@ export default defineStore('MHWBG_Store', {
             }
 
             default:
+
               break;
           }
         }

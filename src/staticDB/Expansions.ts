@@ -12,7 +12,7 @@ const ancientForestCoreMonsterList:MonsterList = {
       },
       2: {
         stars: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: 60,
       },
       3: {
         stars: 3,
@@ -27,7 +27,7 @@ const ancientForestCoreMonsterList:MonsterList = {
     rank: {
       1: {
         stars: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: 60,
       },
       2: {
         stars: 2,
@@ -35,7 +35,7 @@ const ancientForestCoreMonsterList:MonsterList = {
       },
       3: {
         stars: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: 70,
       },
     },
   },
@@ -50,11 +50,11 @@ const ancientForestCoreMonsterList:MonsterList = {
       },
       2: {
         stars: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: 70,
       },
       3: {
         stars: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: 75,
       },
     },
   },
@@ -69,11 +69,11 @@ const ancientForestCoreMonsterList:MonsterList = {
       },
       2: {
         stars: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: 85,
       },
       4: {
         stars: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: 90,
       },
     },
   },
@@ -84,15 +84,15 @@ const ancientForestCoreMonsterList:MonsterList = {
     rank: {
       1: {
         stars: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: 80,
       },
       2: {
         stars: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: 85,
       },
       4: {
         stars: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: 90,
       },
     },
   },
