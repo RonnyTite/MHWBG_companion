@@ -1,28 +1,15 @@
+// Hunter
 export interface ArmorPiece {
   name: string
   type: number
   rarity: number
   description?: string
 }
-
 export interface Equipment {
   head: ArmorPiece
   torso: ArmorPiece
   legs: ArmorPiece
 }
-
-interface MonsterRank {
-  stars: number
-  maxHealthPoint: number
-}
-
-export interface Monster {
-  name: string
-  icon: string
-  healthPoint: number
-  rank: Record<number, MonsterRank>
-}
-
 export interface Hunter {
   name: string
   healthPoint: number
@@ -35,7 +22,6 @@ export interface Hunter {
   inventory: Chest | Record<string, never>
 
 }
-
 export interface Item {
   name: string
   type: number
@@ -44,22 +30,48 @@ export interface Item {
   quantity: number
   description?: string
 }
+export interface Chest {
+  [x: string]: Item | Equipment | Potion
+}
+export interface Potions {
+  quantity: number
+}
 
+// Game
 export interface Game {
   huntersList: Array<Hunter>
   monsterList: Monster
   inventory: Array<Item>
   potions: Potions
 }
-
-export interface Chest {
-  [x: string]: Item | Equipment | Potion
+export interface Campaign extends Game {
+  expansions:IncludedExpansions
+  name?:string
 }
 
-export interface Potions {
-  quantity: number
+// Monsters
+interface MonsterList {
+  [x:string]: Monster
+}
+interface MonsterRank {
+  stars: number
+  maxHealthPoint: number
 }
 
+export interface Monster {
+  name: string
+  icon: string
+  healthPoint: number
+  rank: Record<number, MonsterRank>
+  parts?: MonsterParts
+}
+export interface MonsterParts {
+  [x:number]: string
+}
+
+// Expansions
+// eslint-disable-next-line max-len
+export type ExpansionsName = 'AncientForestCore' | 'WilspireDesertCore' | 'TeostraExpansion' | 'NergiganteExpansion' | 'KusharadaoraExpansion' | 'KuluYaKuExpansion';
 export interface IncludedExpansions {
   AncientForestCore: ExpansionInterface
   WilspireDesertCore: ExpansionInterface
@@ -72,7 +84,6 @@ export interface ExpansionInterface {
   include: boolean,
   name : string
 }
-
 export interface AncientForestCoreMonsterList {
   jagras: {
     name: 'Jagras',
@@ -161,7 +172,6 @@ export interface AncientForestCoreMonsterList {
   },
 
 }
-
 export interface WilspireDesertCoreMonsterList {
   barroth: {
     name: 'barroth',
@@ -250,7 +260,6 @@ export interface WilspireDesertCoreMonsterList {
   },
 
 }
-
 export interface KuluYaKuExpansionMonsterList {
   kuluYaKu: {
     name: 'Kulu Ya Ku',
@@ -270,7 +279,6 @@ export interface KuluYaKuExpansionMonsterList {
       }, }
   },
 }
-
 export interface KusharadaoraExpanngsionMonsterList {
   kusharadaora: {
     name: 'Kusharadaora',
@@ -290,7 +298,6 @@ export interface KusharadaoraExpanngsionMonsterList {
       }, }
   },
 }
-
 export interface TeostraExpansionMonsterList {
   teostra: {
     name: 'Teostra',
@@ -310,7 +317,6 @@ export interface TeostraExpansionMonsterList {
       }, }
   },
 }
-
 export interface NergiganteExpansionMonsterList {
   nergigante: {
     name: 'Nergigante',
@@ -330,14 +336,3 @@ export interface NergiganteExpansionMonsterList {
       }, }
   },
 }
-
-export interface Campaign extends Game {
-  expansions:IncludedExpansions
-  name?:string
-}
-
-interface MonsterList {
-  [x:string]: Monster
-}
-// eslint-disable-next-line max-len
-export type ExpansionsName = 'AncientForestCore' | 'WilspireDesertCore' | 'TeostraExpansion' | 'NergiganteExpansion' | 'KusharadaoraExpansion' | 'KuluYaKuExpansion';

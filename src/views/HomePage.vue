@@ -55,7 +55,6 @@
                   :hunter-props="hunter"
                   :hunter-index="index"
                   :palico-enabled="hunters.length <= 2"
-                  @create-hunter="openModalHunter"
                   @remove-hunter="removeHunter"
                 />
               </IonCol>
