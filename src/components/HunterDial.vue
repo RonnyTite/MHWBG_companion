@@ -3,7 +3,8 @@
     <IonCard>
       <IonCardHeader>
         <IonCardTitle>
-          <span>Hunter {{ hunterIndex + 1 }}</span>
+          <div>{{ hunter.name }}</div>
+          <small>Hunter {{ hunterIndex + 1 }}</small>
           <span class="close">
             <IonButton
               class="close-btn"
@@ -20,8 +21,6 @@
       </IonCardHeader>
 
       <IonCardContent>
-        <div>{{ hunter.name }} HP </div>
-
         <IonGrid>
           <IonRow class="ion-justify-content-center">
             <IonCol size="2">

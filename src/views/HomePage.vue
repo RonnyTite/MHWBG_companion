@@ -65,10 +65,20 @@
 
         <IonButton
           v-if="hunters.length <4"
-          @click="createHunter"
+          @click="showHunterInput"
         >
           Add Hunter
         </IonButton>
+        <IonItem v-if="creatingHunter">
+          <IonInput
+            v-model="hunterName"
+            :color="hunterFieldError ? 'danger' : 'primary' "
+            label="Name your Hunter"
+            placeholder="Jonathan Joestar"
+            :clear-input="true"
+            @ion-input="customDebounce"
+          />
+        </IonItem>
       </div>
       <IonFab
         slot="fixed"
@@ -106,8 +116,12 @@
 <script lang="ts">
 import {
   IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonFab, IonFabButton, IonImg, IonFabList, IonButtons,
-  IonIcon, IonGrid, IonRow, IonCol,
+  IonIcon, IonGrid, IonRow, IonCol, IonItem, IonInput,
 } from '@ionic/vue';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import {
+  IonInputCustomEvent,
+} from '@ionic/core/components';
 import HunterDial from '@/components/HunterDial.vue';
 import MonsterDial from '@/components/MonsterDial.vue';
 import { defineComponent } from 'vue';
@@ -141,6 +155,8 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonCol,
+    IonItem,
+    IonInput,
   },
   setup() {
     return {
@@ -159,6 +175,12 @@ export default defineComponent({
         rank: number,
       },
       isSettingsOpen: false,
+      creatingHunter: false,
+      hunterFieldError: false,
+      hunterName: '',
+      // debounce
+      typing: false,
+      timer: undefined as number | undefined,
     };
   },
   beforeMount() {
@@ -169,12 +191,18 @@ export default defineComponent({
     toggleSettings() {
       this.isSettingsOpen = !this.isSettingsOpen;
     },
-    openModalHunter() { // open Modal hunter
+    showHunterInput() {
+      this.creatingHunter = true;
     },
-    createHunter() {
-      // open creation modal
-      const newHunter = new Hunter({ name: `Ronny${this.hunters.length}` });
-      this.hunters.push(newHunter);
+    createHunter($event: IonInputCustomEvent<InputEvent>) {
+      if ($event.detail.data?.trim()) {
+        const newHunter = new Hunter({ name: this.hunterName });
+        this.hunters.push(newHunter);
+        this.creatingHunter = false;
+        this.hunterName = '';
+      } else {
+        this.hunterFieldError = true;
+      }
     },
     removeHunter(name:string) {
       const hunterIndex = this.hunters.findIndex((hunter) => name === hunter.name);
@@ -188,6 +216,15 @@ export default defineComponent({
     },
     selectMonster({ name, rank }:{ name:string, rank:number }) {
       this.monsterProperties = { name, rank };
+    }, /**
+     *
+     * @see https://www.freecodecamp.org/news/javascript-debounce-example/
+     */
+    customDebounce(args:IonInputCustomEvent<InputEvent>) {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.createHunter(args);
+      }, 800);
     },
   },
 });
