@@ -3,11 +3,12 @@
     <IonCard>
       <IonCardHeader>
         <IonCardTitle>
-          <span> {{ monster.name }} HP</span>
-          <span><IonImg
-            class="item-img"
-            :src="`./assets/rank/${monsterProperties.rank}_stars.png`"
-          /></span>
+          <span> {{ monster.name }}
+            <IonImg
+              class="monster-rank"
+              :src="`./assets/rank/${monsterProperties.rank}_stars.png`"
+            /></span>
+
           <span class="close">
             <IonButton
               class="close-btn"
@@ -89,7 +90,7 @@ export default defineComponent({
     };
   },
   computed: {
-    renderHpColors():string {
+    renderHpColors(): string {
       const { maxHealthPoint } = this.monster.rank[this.monsterProperties.rank];
       const lowHealth = Math.floor(maxHealthPoint / 3);
 
@@ -129,12 +130,17 @@ export default defineComponent({
 });
 </script>
 
- <style scoped>
- .monster-img{
+<style scoped>
+.monster-img {
   width: 50px;
   height: 50px;
   display: block;
   margin: auto;
- }
+}
 
- </style>
+.monster-rank {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+</style>

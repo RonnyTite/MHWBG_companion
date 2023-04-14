@@ -51,7 +51,6 @@
             >
               <IonImg
                 class="item-img"
-
                 src="./assets/palico.jpg"
               />
             </IonCol>

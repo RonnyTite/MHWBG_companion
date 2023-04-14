@@ -8,7 +8,12 @@
         :data-rank="stars"
         class="rank-item"
         @click="selectRank"
-      >{{ stars }}</span>
+      >
+        <IonImg
+          class="rank-img"
+          :src="`./assets/rank/${stars}_stars.png`"
+        />
+      </span>
     </div>
     <div>
       <IonList>
@@ -17,7 +22,7 @@
             aria-label="wyvern"
             placeholder="Select Wyvern"
             class="monster-selector"
-            :disabled="rank ===0"
+            :disabled="rank === 0"
             @ion-change="emitSelection"
           >
             <ion-select-option
@@ -37,14 +42,14 @@
 
 <script lang="ts">
 import {
-  IonItem, IonList, IonSelect, IonSelectOption,
+  IonItem, IonList, IonSelect, IonSelectOption, IonImg,
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import MHWBGStore from '../store/Store';
 
 export default defineComponent({
   components: {
-    IonItem, IonList, IonSelect, IonSelectOption,
+    IonItem, IonList, IonSelect, IonSelectOption, IonImg,
   },
   emits: ['monster-selected'],
   data() {
@@ -58,8 +63,8 @@ export default defineComponent({
       console.debug('monstersList', store.monsters);
       return Object.entries(store.monsters);
     },
-    constructRank():Array<number> {
-      const ranks:Array<number> = [];
+    constructRank(): Array<number> {
+      const ranks: Array<number> = [];
 
       this.monstersList.forEach(([, monster]) => {
         const keys = Object.keys(monster.rank);
@@ -67,14 +72,14 @@ export default defineComponent({
           ranks.push(parseInt(index, 10));
         });
       });
-      return [...new Set(ranks)];
+      return [...new Set(ranks)].sort();
     },
   },
   mounted() {
     this.setActiveRank();
   },
   methods: {
-    selectRank($event: MouseEvent):void {
+    selectRank($event: MouseEvent): void {
       const el = $event.target as HTMLButtonElement;
       if (el) {
         const rank = el.getAttribute('data-rank') || '1';
@@ -82,7 +87,7 @@ export default defineComponent({
         this.setActiveRank();
       }
     },
-    emitSelection($event:CustomEvent):void {
+    emitSelection($event: CustomEvent): void {
       const { value } = $event.detail;
       this.$emit('monster-selected', { name: value, rank: this.rank });
     },
@@ -98,22 +103,33 @@ export default defineComponent({
 </script>
 <style>
 .rank-list {
-    font-size: 40px;
+  font-size: 30px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
 .rank-item {
-    cursor: pointer;
-    margin: 0 10px
+  cursor: pointer;
+  opacity: 0.4;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.rank-img {
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  pointer-events: none;
 }
 
 .rank-item.active {
-    border-radius: 100%;
-    border-color: red;
-    border-width: 1px;
-    border-style: solid;
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-    line-height: 50px;
+  opacity: 1;
+  display: inline-block;
+  line-height: 40px;
 }
 </style>
