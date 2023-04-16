@@ -30,11 +30,11 @@ describe('Create new Monster', () => {
         },
         2: {
           stars: 2,
-          maxHealthPoint: 65,
+          maxHealthPoint: 85,
         },
         4: {
           stars: 3,
-          maxHealthPoint: 65,
+          maxHealthPoint: 90,
         },
       },
     });

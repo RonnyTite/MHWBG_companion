@@ -1,11 +1,24 @@
 // Hunter
 export interface ArmorPiece {
   name: string
-  type: number
+  type: string
   rarity: number
   description?: string
 }
+// eslint-disable-next-line max-len
+export type WeaponAbbreviation = 'bow' | 'charge_blade' | 'ds' | 'gs' | 'gunlance' | 'hammer' | 'hbg' | 'hh' | 'insect_glaive' | 'lance' | 'lbg' | 'ls' | 'sns' | 'switch_axe';
+// eslint-disable-next-line max-len
+export type WeaponType = 'Bow' | 'Charge Blade' | 'Dual Blades' | 'Great Sword' | 'Gunlance' | 'Hammer' | 'Heavy Bowgun' | 'Hunting Horn' | 'Insect Glaive' | 'Lance' | 'Light Bowgun' | 'Long Sword' | 'Sword and Shield' | 'Switch Axe';
+export interface Weapon {
+  name: string
+  weaponType: WeaponType
+  abbreviation: WeaponAbbreviation
+  rarity: number
+  description?: string
+}
+
 export interface Equipment {
+  weapon: Weapon
   head: ArmorPiece
   torso: ArmorPiece
   legs: ArmorPiece
@@ -53,6 +66,7 @@ export interface Campaign extends Game {
 interface MonsterList {
   [x:string]: Monster
 }
+
 interface MonsterRank {
   stars: number
   maxHealthPoint: number

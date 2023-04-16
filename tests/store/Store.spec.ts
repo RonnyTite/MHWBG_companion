@@ -69,6 +69,8 @@ describe('store - Actions', () => {
       const spy = Sinon.spy(store, 'addAncientForestCoreMonsterList');
       store.enableExpansions();
       expect(Object.keys(store.monsters)).toEqual(initialExpansion);
+      // eslint-disable-next-line max-len
+      expect(Object.keys(store.equipment)).toEqual(['bow', 'charge_blade', 'ds', 'gs', 'gunlance', 'hammer', 'hbg', 'hh', 'insect_glaive', 'lance', 'lbg', 'ls', 'sns', 'switch_axe', 'head', 'torso', 'legs']);
       Sinon.assert.calledOnce(spy);
     });
 
