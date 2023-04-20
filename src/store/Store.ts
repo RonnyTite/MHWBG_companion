@@ -8,6 +8,7 @@ import {
   ExpansionsName,
   ArmorPiece,
   Weapon,
+  WeaponAbbreviation,
 } from '@/types/app';
 
 import {
@@ -25,6 +26,7 @@ import {
   kusharadaoraExpansionWeaponList,
   teostraExpansionWeaponList,
   nergiganteExpansionWeaponList,
+  hunterArsenalExpansionWeaponList,
 } from '../staticDB/Weapons';
 
 import {
@@ -33,6 +35,7 @@ import {
   kusharadaoraExpansionArmorList,
   teostraExpansionArmorList,
   nergiganteExpansionArmorList,
+  hunterArsenalExpansionArmorList,
 } from '../staticDB/Armors';
 
 // https://pinia.vuejs.org/core-concepts/
@@ -40,7 +43,12 @@ interface MHWBGStore {
   currentGame: Game | Record<string, never>
   monsters : MonsterList | Record<string, never>
   expansions: Record<ExpansionsName, ExpansionInterface>
-  equipment: Record<string, Array<Weapon | ArmorPiece>> | Record<string, never>
+  equipment: {
+    weapons: Record<WeaponAbbreviation, Array<Weapon>>
+    head: Array<ArmorPiece>,
+    torso: Array<ArmorPiece>,
+    legs: Array<ArmorPiece>,
+  }
 }
 
 export default defineStore('MHWBG_Store', {
@@ -54,9 +62,28 @@ export default defineStore('MHWBG_Store', {
       NergiganteExpansion: { include: false, name: 'Nergigante' },
       KusharadaoraExpansion: { include: false, name: 'Kusharadaora' },
       KuluYaKuExpansion: { include: false, name: 'Kulu Ya Ku' },
+      HunterArsenalExpansion: { include: false, name: 'Hunter Arsenal' },
     },
     equipment: {
-
+      weapons: {
+        bow: [],
+        charge_blade: [],
+        ds: [],
+        gs: [],
+        gunlance: [],
+        hammer: [],
+        hbg: [],
+        hh: [],
+        insect_glaive: [],
+        lance: [],
+        lbg: [],
+        ls: [],
+        sns: [],
+        switch_axe: [],
+      },
+      head: [],
+      torso: [],
+      legs: [],
     },
   }),
   actions: {
@@ -100,6 +127,12 @@ export default defineStore('MHWBG_Store', {
 
             case 'KuluYaKuExpansion': {
               this.addKuluYaKuExpansionMonsterList();
+
+              break;
+            }
+
+            case 'HunterArsenalExpansion': {
+              this.addHunterArsenalExpansionMonsterList();
 
               break;
             }
@@ -188,6 +221,20 @@ export default defineStore('MHWBG_Store', {
         ...kuluYaKuExpansionArmorList,
         ...this.equipment,
       };
+    },
+    addHunterArsenalExpansionMonsterList() {
+      // TODO;
+      console.debug(hunterArsenalExpansionWeaponList);
+      console.debug(hunterArsenalExpansionArmorList);
+      // Object.keys(this.equipment.weapons).forEach((weaponType) => {
+      //   const wpnType = weaponType as WeaponAbbreviation;
+      //   this.equipment.weapons[wpnType] = this.equipment.weapons[wpnType]
+      //     .concat(hunterArsenalExpansionWeaponList[weaponType]);
+      // });
+
+      // this.equipment.head = this.equipment.head.concat(hunterArsenalExpansionArmorList.head);
+      // this.equipment.torso = this.equipment.torso.concat(hunterArsenalExpansionArmorList.torso);
+      // this.equipment.legs = this.equipment.legs.concat(hunterArsenalExpansionArmorList.legs);
     },
     createNewCampaign(campaign:Campaign) {
       this.currentGame = campaign;

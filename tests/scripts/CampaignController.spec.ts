@@ -1,5 +1,4 @@
 import Campaign from '@/scripts/CampaignController';
-import Monster from '@/scripts/MonsterController';
 import Hunter from '@/scripts/HunterController';
 import {
   ancientForestCoreMonsterList,
@@ -31,6 +30,7 @@ describe('Create new Campaign', () => {
         NergiganteExpansion: { include: false, name: 'Nergigante' },
         KusharadaoraExpansion: { include: false, name: 'Kusharadaora' },
         KuluYaKuExpansion: { include: false, name: 'Kulu Ya Ku' },
+        HunterArsenalExpansion: { include: false, name: 'Hunter Arsenal' },
       },
     });
 

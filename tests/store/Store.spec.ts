@@ -52,6 +52,7 @@ describe('store - Actions', () => {
       NergiganteExpansion: { include: false, name: 'Nergigante' },
       KusharadaoraExpansion: { include: false, name: 'Kusharadaora' },
       KuluYaKuExpansion: { include: false, name: 'Kulu Ya Ku' },
+      HunterArsenalExpansion: { include: false, name: 'Hunter Arsenal' },
     });
   });
 
@@ -134,6 +135,17 @@ describe('store - Actions', () => {
       expect(Object.keys(store.monsters)).toEqual([
         'nergigante', // Nergigante
         ...initialExpansion,
+      ]);
+      Sinon.assert.calledOnce(spy);
+    });
+
+    it('enableExpansions - Hunter Arsenal', () => {
+      const store = MHWBGStore();
+      store.updateExpansions('HunterArsenalExpansion', true);
+      const spy = Sinon.spy(store, 'addHunterArsenalExpansionMonsterList');
+      store.enableExpansions();
+      expect(Object.keys(store.monsters)).toEqual([
+        ...initialExpansion, // Hunter Arsenal has no monsters
       ]);
       Sinon.assert.calledOnce(spy);
     });

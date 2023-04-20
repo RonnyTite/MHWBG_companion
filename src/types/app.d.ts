@@ -4,6 +4,13 @@ export interface ArmorPiece {
   type: string
   rarity: number
   description?: string
+  armorValue: number,
+  elementalArmorValue?: {
+    fire?: number,
+    water?: number,
+    ice?: number,
+    dragon?: number,
+  },
 }
 // eslint-disable-next-line max-len
 export type WeaponAbbreviation = 'bow' | 'charge_blade' | 'ds' | 'gs' | 'gunlance' | 'hammer' | 'hbg' | 'hh' | 'insect_glaive' | 'lance' | 'lbg' | 'ls' | 'sns' | 'switch_axe';
@@ -14,7 +21,11 @@ export interface Weapon {
   weaponType: WeaponType
   abbreviation: WeaponAbbreviation
   rarity: number
-  description?: string
+  deck: {
+    remove: Array<string>
+    add: Array<string>
+  }
+  attackCards: Record<number, number>
 }
 
 export interface Equipment {
@@ -85,7 +96,7 @@ export interface MonsterParts {
 
 // Expansions
 // eslint-disable-next-line max-len
-export type ExpansionsName = 'AncientForestCore' | 'WilspireDesertCore' | 'TeostraExpansion' | 'NergiganteExpansion' | 'KusharadaoraExpansion' | 'KuluYaKuExpansion';
+export type ExpansionsName = 'AncientForestCore' | 'WilspireDesertCore' | 'TeostraExpansion' | 'NergiganteExpansion' | 'KusharadaoraExpansion' | 'KuluYaKuExpansion' | 'HunterArsenalExpansion';
 export interface IncludedExpansions {
   AncientForestCore: ExpansionInterface
   WilspireDesertCore: ExpansionInterface
@@ -93,6 +104,7 @@ export interface IncludedExpansions {
   NergiganteExpansion: ExpansionInterface
   KusharadaoraExpansion: ExpansionInterface
   KuluYaKuExpansion: ExpansionInterface
+  HunterArsenalExpansion: ExpansionInterface
 }
 export interface ExpansionInterface {
   include: boolean,
@@ -105,15 +117,15 @@ export interface AncientForestCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
   tobiKadachi: {
@@ -122,15 +134,15 @@ export interface AncientForestCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
   anjanath: {
@@ -139,15 +151,15 @@ export interface AncientForestCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
   rathalos: {
@@ -156,15 +168,15 @@ export interface AncientForestCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
   rathalosVariant: {
@@ -173,15 +185,15 @@ export interface AncientForestCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
 
@@ -193,15 +205,15 @@ export interface WilspireDesertCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
   jyuratodus: {
@@ -210,15 +222,15 @@ export interface WilspireDesertCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
   pukeiPukei: {
@@ -227,15 +239,15 @@ export interface WilspireDesertCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
   diablos: {
@@ -244,15 +256,15 @@ export interface WilspireDesertCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
   diablosVariant: {
@@ -261,15 +273,15 @@ export interface WilspireDesertCoreMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
 
@@ -281,15 +293,15 @@ export interface KuluYaKuExpansionMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
 }
@@ -300,15 +312,15 @@ export interface KusharadaoraExpanngsionMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
 }
@@ -319,15 +331,15 @@ export interface TeostraExpansionMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
 }
@@ -338,15 +350,15 @@ export interface NergiganteExpansionMonsterList {
     rank:{
       0: {
         rank: 1,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       1: {
         rank: 2,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       },
       2: {
         rank: 3,
-        maxHealthPoint: 65,
+        maxHealthPoint: number,
       }, }
   },
 }
